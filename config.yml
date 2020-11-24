@@ -1,0 +1,106 @@
+use_gpu: true
+
+data:
+    speakers: ["CF02", "CF03", "CF04", "CF05", "CM01", "CM04", "CM05", "CM06", "CM08", "CM09", "CM10", "CM12", "CM13", "F02", "F03", "F04", "F05", "M01", "M04","M05", "M07", "M08", "M09", "M10", "M11", "M12", "M14", "M16"]
+    sr: 16000
+    shift_ms: 10
+    fftl: 1024
+    num_mels: 80
+    hop_length: 160
+    top_db: 120
+    mcep_order: 12
+    mcep_alpha: 0.41
+    PAD_token: PAD
+    SOS_token: SOS
+    EOS_token: EOS
+    train_test_frac: 0.9
+    ignore_speakers: ["F02", "F03", "M01", "M04", "M07", "M12", "M16"]
+    conversion_source_speakers: ["CF02", "CF03", "CF04", "CF05", "CM01", "CM04", "CM05", "CM06", "CM08"]
+    conversion_target_speakers: ["M05", "F04", "M14", "F05"]
+    seen_unseen_split: 0.5
+
+directories:
+    root: /home/john/Datasets/UASPEECH/
+    speakers: speakers/
+    noise_removed: noise_removed/
+    silence_removed: silence_removed/
+    features: features/
+    exps: exps/
+    dtw: dtw/
+    mcep: mcep/
+    attention_augmented_data_1: attention_data_partition_1/
+    attention_augmented_data_2: attention_data_partition_2/
+    dcgan_augmented_data_1: dcgan_data_partition_1/
+    dcgan_augmented_data_2: dcgan_data_partition_2/
+    attention_specaugmented_data_1: attention_data_partition_1_specaugmented/
+    attention_specaugmented_data_2: attention_data_partition_2_specaugmented/
+    dcgan_specaugmented_data_1: dcgan_data_partition_1_specaugmented/
+    dcgan_specaugmented_data_2: dcgan_data_partition_2_specaugmented/
+    features_specaugmented: features_specaugmented/
+
+
+model:
+    name: BLSTM
+    hidden_size: 200
+    num_layers: 4
+    bidirectional: true
+    num_linear_layers: 2
+    batch_first: true
+    dropout: 0.1
+    lr: 0.0001
+
+train:
+    log_step: 100
+    model_save_step: 5000
+    num_epochs: 50000
+    batch_size: 16
+    class_history: 50
+    regular_epochs: 10000
+    fairness_lambda: 0.25
+    dys_class: 0
+    normal_class: 1
+    class_loss_lambda: 10000000
+
+attention_vc:
+    lr: 0.0001
+
+dcgan:
+    use_batchnorm: false  # KEEP THIS FALSE!!! batchnorm screws everything up
+    adapt_size: 15  # this was 150, trying to make the discriminator a little worse
+    batch_size: 32  # was 32 in paper, trying larger
+    beta1: 0.5  # from DCGAN paper, more stable
+    d_lr: 0.00001
+    g_lr: 0.00006
+    d_schedule: 1
+
+spec_augment:
+    W: 20
+    F: 20
+    T: 30
+    num_augment_examples: 3
+    num_augment_examples_seen_data: 20
+    num_augment_examples_unseen_data: 20
+    num_augment_examples_unseen_normal_data: 10
+    all_data_num_augment_examples: 3
+
+language_model:
+    K: 5
+    CTC_weight: 1
+    LM_weight: 1
+    Attention_K: 20
+    Attention_CTC_weight: 1
+    Attention_LM_weight: 1
+    DCGAN_K: 20
+    DCGAN_CTC_weight: 1
+    DCGAN_LM_weight: 1
+    Oracle_K: 20
+    Oracle_CTC_weight: 1
+    Oracle_LM_weight: 1
+    Limited_K: 20
+    Limited_CTC_weight: 1
+    Limited_LM_weight: 1
+    Lack_K: 20
+    Lack_CTC_weight: 1
+    Lack_LM_weight: 1
+
+

@@ -1,0 +1,30 @@
+M01/Very low (15%)
+M04/Very low (2%)	
+M05/Mid (58%)	
+M06/Low (39%)	
+M07/Low (28%)	
+M08/High (93%)	
+M09/High (86%)	
+M10/High (93%)	
+F02/Low (29%)	
+F03/Very low (6%)	
+F04/Mid (62%)	
+F05/High (95%)	
+M11/Mid (62%)	
+M12/Very low (7.4%)
+M13/No info	
+M14/High (90.4%)	
+M16/Low (43%)
+CF02/Control Speaker
+CF03/Control Speaker
+CF04/Control Speaker
+CF05/Control Speaker
+CM01/Control Speaker
+CM04/Control Speaker
+CM05/Control Speaker
+CM06/Control Speaker
+CM08/Control Speaker
+CM09/Control Speaker
+CM10/Control Speaker
+CM12/Control Speaker
+CM13/Control Speaker

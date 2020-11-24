@@ -1,0 +1,16 @@
+/features/
+/noise_removed/
+/silence_removed/
+/speakers/
+/temp_folder_concatenated_audio/
+/dtw/
+/exps/
+/mcep/
+/attention_data/
+/dcgan_data/
+/seen_data/
+/specaugment_data_dcgan/
+/specaugment_data_MESSED_UP/
+/specaugment_seen_data/
+/seen_data_dysarthric/
+/unseen_data_dysarthric/
